@@ -1,10 +1,5 @@
 # calculator-mcp-server
-
-Phase 2 of an agentic AI study plan covering: Claude Code, Anthropic Skills, MCP, Codex CLI, Antigravity, and Agentic AI.
-
-## What this is
-
-A minimal Java MCP (Model Context Protocol) server that exposes two tools:
+A mini Java MCP (Model Context Protocol) server that exposes two tools:
 
 - `calculate` — performs arithmetic (add, subtract, multiply, divide)
 - `get_skill` — returns usage guidance from `SKILL.md`, helping AI clients understand how to best use the server
