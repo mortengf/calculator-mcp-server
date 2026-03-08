@@ -1,5 +1,5 @@
 # calculator-mcp-server
-A mini Java MCP (Model Context Protocol) server that exposes two tools:
+A mini Java Model Context Protocol (MCP) server that exposes two tools:
 
 - `calculate` — performs arithmetic (add, subtract, multiply, divide)
 - `get_skill` — returns usage guidance from `SKILL.md`, helping AI clients understand how to best use the server
@@ -17,11 +17,11 @@ src/
       SKILL.md                   # Usage guidance returned by the get_skill tool
 ```
 
-## How it relates to Phase 1
+## Motivation
 
-In Phase 1 (`agent-phase1`) we built a Java agent loop that called Claude API directly, with `CalculatorTool` defined using Claude-specific JSON (`input_schema`).
+[mini-agent](https://github.com/mortengf/mini-agent) implements a mini Java agent loop that calls Claude API directly, with `CalculatorTool` defined using Claude-specific JSON (`input_schema`).
 
-This server solves the portability problem identified in Phase 1: tools are now defined in the MCP-standard format and can be used by any MCP-compatible AI client — not just Claude.
+This server solves the portability problem identified in `mini-agent`: tools are now defined in the MCP-standard format and can be used by any MCP-compatible AI client — not just Claude.
 
 ## What is a skill?
 
