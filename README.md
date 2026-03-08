@@ -70,7 +70,3 @@ Restart Claude Desktop — you can now ask Claude to calculate something and it 
 > **You:** What is (123 * 456) + (789 / 3)?
 >
 > **Claude:** 56,351
-
-## Next steps
-
-Phase 3 introduces Claude Code and Codex CLI — agentic coding tools that can help build and improve MCP servers like this one.
