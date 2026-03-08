@@ -110,7 +110,7 @@ public class CalculatorMcpServer {
         Thread.currentThread().join();
     }
 
-    private static String calculate(Map<String, Object> arguments) {
+    static String calculate(Map<String, Object> arguments) {
         String operation = (String) arguments.get("operation");
         double a = ((Number) arguments.get("a")).doubleValue();
         double b = ((Number) arguments.get("b")).doubleValue();
