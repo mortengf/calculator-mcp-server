@@ -1,11 +1,10 @@
 package mortengf.ai.mcp;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import io.modelcontextprotocol.json.McpJsonDefaults;
 import io.modelcontextprotocol.server.McpServer;
 import io.modelcontextprotocol.server.McpServerFeatures;
 import io.modelcontextprotocol.server.McpSyncServer;
 import io.modelcontextprotocol.server.transport.StdioServerTransportProvider;
-import io.modelcontextprotocol.json.jackson.JacksonMcpJsonMapper;
 import io.modelcontextprotocol.spec.McpSchema;
 import io.modelcontextprotocol.spec.McpSchema.ServerCapabilities;
 
@@ -23,9 +22,7 @@ import java.util.Map;
 public class CalculatorMcpServer {
 
     public static void main(String[] args) throws InterruptedException {
-        // JacksonMcpJsonMapper wraps ObjectMapper — required by the SDK
-        var jsonMapper = new JacksonMcpJsonMapper(new ObjectMapper());
-        var transport = new StdioServerTransportProvider(jsonMapper);
+        var transport = new StdioServerTransportProvider(McpJsonDefaults.getMapper());
 
         var inputSchema = new McpSchema.JsonSchema(
                 "object",
@@ -62,8 +59,8 @@ public class CalculatorMcpServer {
 
         var calculatorTool = new McpServerFeatures.SyncToolSpecification(
                 tool,
-                (exchange, arguments) -> {
-                    String result = calculate(arguments);
+                (exchange, request) -> {
+                    String result = calculate(request.arguments());
                     return McpSchema.CallToolResult.builder()
                             .content(List.of(new McpSchema.TextContent(result)))
                             .isError(false)
@@ -79,7 +76,7 @@ public class CalculatorMcpServer {
                         new McpSchema.JsonSchema("object", Map.of(), List.of(), false, null, null),
                         null, null, null
                 ),
-                (exchange, arguments) -> {
+                (exchange, request) -> {
                     try (var stream = CalculatorMcpServer.class.getResourceAsStream("/SKILL.md")) {
                         if (stream == null) {
                             throw new IOException("SKILL.md not found in JAR");
