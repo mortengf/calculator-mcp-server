@@ -2,6 +2,17 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Development
+
+- **Java:** 17
+- **Build:** Maven — `mvn package -q` produces a fat JAR via `maven-shade-plugin` 3.5.1
+- **Tests:** JUnit 5 (`junit-jupiter:5.10.2`) — run with `mvn test`
+- **Key dependencies:** MCP SDK `io.modelcontextprotocol.sdk:mcp:1.0.0`, SLF4J `slf4j-simple:2.0.9`
+
+## Git Workflow
+
+After making changes, commit and push using the `/commit` skill. Commit messages follow conventional commits and explain *why*, not just *what*.
+
 ## Commands
 
 ```bash
